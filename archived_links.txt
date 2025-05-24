@@ -1,0 +1,9 @@
+  <li><a href="https://nickalexvr.createaforum.com/index.php" style="font-family: sans-serif">Discuss</a></li>
+  <li><a href="/users.html" style="font-family: sans-serif">User webpage layout</a></li>
+  
+  
+Old logos:
+http://u.cubeupload.com/LuckyLucky7/nickalexfulllogo.png
+
+NickAlex VR:
+http://u.cubeupload.com/LuckyLucky7/NickAlex.png
