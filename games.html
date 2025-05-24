@@ -65,6 +65,90 @@
     
   
 </style>
+
+
+	<div style="max-width:900px; margin:0 auto; padding:20px;">
+  <h1 style="text-align:center; margin-bottom:30px; color:#333;">Mobile Games</h1>
+  
+  <div id="gameListCtn" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:20px;"></div>
+</div>
+
+<style>
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: left;
+  }
+  
+  @media (max-width: 600px) {
+    #gameListCtn { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // Sample game data
+  let games = [
+    {
+      title: "Space Adventure",
+      thumbnail: "https://placehold.co/600x400/468faf/ffffff?text=Space+Adventure",
+      creator: { username: "StarGazer", profilePic: "https://placehold.co/200x200/ff9a00/ffffff?text=SG" }
+    },
+    {
+      title: "Pixel Dungeon",
+      thumbnail: "https://placehold.co/600x400/83a95c/ffffff?text=Pixel+Dungeon",
+      creator: { username: "RetroGamer", profilePic: "https://placehold.co/200x200/8a2be2/ffffff?text=RG" }
+    },
+    {
+      title: "Car Racing 3D",
+      thumbnail: "https://placehold.co/600x400/e63946/ffffff?text=Racing+3D",
+      creator: { username: "SpeedyDev", profilePic: "https://placehold.co/200x200/2a9d8f/ffffff?text=SD" }
+    },
+    {
+      title: "Medieval Quest",
+      thumbnail: "https://placehold.co/600x400/bc6c25/ffffff?text=Medieval+Quest",
+      creator: { username: "KnightCoder", profilePic: "https://placehold.co/200x200/06d6a0/ffffff?text=KC" }
+    },
+    {
+      title: "Zombie Survival",
+      thumbnail: "https://placehold.co/600x400/1b4332/ffffff?text=Zombie+Survival",
+      creator: { username: "UndeadMaster", profilePic: "https://placehold.co/200x200/d00000/ffffff?text=UM" }
+    },
+    {
+      title: "Puzzle Master",
+      thumbnail: "https://placehold.co/600x400/f4a261/ffffff?text=Puzzle+Master",
+      creator: { username: "BrainTeaser", profilePic: "https://placehold.co/200x200/3d405b/ffffff?text=BT" }
+    }
+  ];
+
+  // Display all games
+  function displayGames() {
+    let html = '';
+    
+    games.forEach(game => {
+      html += `
+        <div style="background-color:white; border-radius:15px; border:2px solid #4CAF50; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.3s ease;" 
+             onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+          <img src="${game.thumbnail}" alt="${game.title}" style="width:100%; height:160px; object-fit:cover;">
+          <div style="padding:15px;">
+            <h3 style="font-size:18px; font-weight:bold; margin:0 0 10px 0; color:#333;">${game.title}</h3>
+            <div style="display:flex; align-items:center;">
+              <img src="${game.creator.profilePic}" alt="${game.creator.username}" 
+                   style="width:40px; height:40px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">
+              <span style="font-size:14px; color:#666;">${game.creator.username}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    gameListCtn.innerHTML = html;
+  }
+
+  // Initialize the page
+  document.addEventListener('DOMContentLoaded', displayGames);
+</script>
 <body>
 
     <center><h1 style="margin-top: 65px; background-color: #00e81a; font: menu; font-size: 30px;">Games</h1>
