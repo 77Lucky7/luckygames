@@ -46,6 +46,13 @@ a:hover {
   background-color: #006f11
 }
 
+/* Prevent dark green lines when hovering on images */
+a img {
+  border: none;
+  outline: none;
+  display: block;
+}
+
 .active {
   background-color: #f00;
 }
