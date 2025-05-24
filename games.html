@@ -108,7 +108,7 @@
           }
           <div style="padding:15px;"><center>
             ${game.titleLink ? 
-            `<a href="${game.titleLink}" style="font-size:25px; font-weight:bold; margin:0 0 10px 0; color:#333;">${game.title}</a>`
+            `<a href="${game.titleLink}" style="font-size:16px; font-weight:bold; margin:0 0 10px 0; color:#333;">${game.title}</a>`
             : game.title
           }
             </center>
@@ -121,6 +121,7 @@
                 `<img src="${game.creator.profilePic}" alt="${game.creator.username}" 
                      style="width:40px; height:40px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">`
               }
+              <div style="margin-left: 10px;"></div>
               ${game.creator.usernameLink ? 
                 `<a href="${game.creator.usernameLink}" style="text-decoration:none;">
                   <span style="font-size:14px; color:#666;">${game.creator.username}</span>
