@@ -1,0 +1,195 @@
+body {margin:0;}
+
+.navbar {
+  list-style-type: none;
+  background-color: #a50000;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  image-width: 40%;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 9px 0px;
+}
+
+1{
+  width: 60px;
+}
+      
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 17px 16px;
+  text-decoration: none;
+  tex-align: center;
+  display: block;
+}
+
+.li {
+  color: #FF0000;
+}
+/* CSS link color (red) */
+
+.li:hover {
+  color: #00FF00;
+}
+/* CSS link hover (green) */
+
+
+a:hover {
+  background-color: #006f11
+}
+
+.active {
+  background-color: #f00;
+}
+
+.background {
+  background-color: #1abc9c;
+  background-image: url(https://u.cubeupload.com/LuckyLucky7/LGBG3.png);
+  background-size: 100%;
+}
+
+.fontchooser {
+  font-family: monospace;
+  color: #ff0000;
+  font-size: 23px;
+  position: relative;     
+  padding-top: 35px;  
+  padding-bottom: 35px; 
+  padding-left: 23px; 
+  padding-right: 23px; 
+  margin: -25px;
+  margin-left: 20px;
+  width: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .fontchooser {
+    font-family: monospace;
+    color: #ff0000;
+    font-size: 23px;
+    position: relative; 
+    padding-top: 0px;  
+    padding-bottom: 0px; 
+    padding-left: 0px; 
+    padding-right: 0px; 
+    margin: 15px;
+    margin-left: 20px;
+    width: 20px;
+  }
+}
+  
+.logo {
+  width: 45px;
+}
+
+.full-logo {
+    background-color: #00e81a;
+    box-shadow: 0px 0px 0px 10px #00b930;   
+    border-radius: 75px;   
+}
+
+.welcome-text {
+  font-family: monospace; margin-top: 30px; background-color: #00e81a; box-shadow: 15px 20px 0 20px #00e81a;
+}
+
+.game-container {
+  border-radius: 50px;
+  background-color: #00ff1c;
+  height: 255px; width: 335px;
+  box-shadow: 1px 0px 0px 20px #0cd622;
+}
+
+.parking-advertisement-container {
+  border-radius: 25px;
+  background-color: #11264d;
+  height: 155px; width: 485px;
+  box-shadow: 1px 0px 0px 5px #ffffff;
+}
+
+.game-container-box {
+  border-radius: 60px;
+  background-color: #00ff1c;
+  height: 255px; width: 375px;
+  box-shadow: 1px 0px 0px 20px #0cd622;
+}
+
+.game-container-interface {
+  font: menu;
+  font-size: medium;
+}
+
+.footer::before {
+        content: "Last Updated on January 1, 2025";
+}
+
+.footer {
+  font-family: monospace;
+  color: #d10000;
+  font-size: 20px;
+  position: relative;
+  padding-top: 35px;  
+  padding-bottom: 35px; 
+  padding-left: 23px; 
+  padding-right: 23px; 
+  margin: -25px;
+  margin-left: 20px;
+  width: 20px;
+}
+
+.footer-bar {
+  list-style-type: none;
+  background-color: #7e0000;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  image-width: 40%;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 9px 0px;
+}
+
+.footer-setup {
+  margin-top: 300px;
+  padding: 20px;
+  background-color: #7e0000;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+  background-color: #8e2727;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #f00; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: red; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+.comments-section {
+  margin-top: 50px;
+  font-family: monospace;
+  font-size: 30px;
+  padding: 10px;
+  background-color: #00ff4770;
+}

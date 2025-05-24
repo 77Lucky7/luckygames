@@ -1,0 +1,70 @@
+body {margin:0;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #7c199e;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+1{
+  width: 60px;
+}
+      
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+.background {
+  background-color: #1abc9c;
+  background-image: url(https://previews.123rf.com/images/sirup/sirup1303/sirup130300003/18389196-elegant-green-background-made-of-floral-decorative-pattern.jpg);
+  background-size: 35%;
+}
+
+.fontchooser {
+  font-family: sans-serif;
+}
+
+.logo {
+  width: 20px;
+}
+
+.full-logo {
+    margin-top: 75px;
+    background-color: #00e81a;
+    box-shadow: 0px 0px 0px 10px #00b930;   
+    border-radius:60px;   
+    margin-left: 10px;     
+    margin-right:10px;
+}
+
+.welcome-text {
+  font-family: monospace; margin-top: 30px; background-color: #00e81a; box-shadow: 15px 20px 0 20px #00e81a;
+}
+
+.game-container {
+  border-radius: 60px;
+  background-color: #00ff1c;
+  height: 255px; width: 375px;
+  box-shadow: 1px 0px 0px 20px #0cd622;
+}

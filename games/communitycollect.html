@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LuckyGames: Community Collect</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://luckygames.glitch.me/stylesheet.css" />
+    <link rel="icon" href="https://u.cubeupload.com/LuckyLucky7/LuckyGamesFavicon.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>  
+  <body class="background"><center>
+      <!-- Load an icon library -->
+
+<div class="navbar" src="https://u.cubeupload.com/LuckyLucky7/65aNavBarV3.png">
+  <img class="logo" src="https://u.cubeupload.com/LuckyLucky7/NewLogoSmall2.png" width="80px" href="#">
+  <a class="fontchooser" href="/">Home</a>
+  <a class="fontchooser" href="/games.html">Play</a>
+  <a class="fontchooser" href="https://discord.com/invite/WfDMzhg5Xd">Discord Server</a>
+  <a class="fontchooser" href="/developers.html">Developers</a>              
+</div>
+    <center><h1 style="margin-top: 65px; background-color: #00e81a; font: menu; font-size: 30px;">Community Collect - by LuckyLucky7*</h1>
+    <div style="background-image: linear-gradient(to right, red,blue,red,blue,red,blue,red,blue); padding: 50px;">
+     
+  
+<canvas id="gameCanvas" width="480" height="320" style="background-color: white;"></canvas>
+<script>
+    // Canvas setup
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Bird
+    let bird = {
+        x: 50,
+        y: canvas.height / 2,
+        radius: 20,
+        velocityY: 0,
+        gravity: 0.5,
+        jumpStrength: -10
+    };
+
+    // Pipes
+    let pipes = [];
+    const pipeGap = 220;
+    const pipeInterval = 150;
+    let pipeTimer = 0;
+
+    // Game state
+    let score = 0;
+    let isGameOver = false;
+    let coins = [];
+    let switches = [];
+    let highScore = getHighScore() || 0; // Get high score from cookie or default to 0
+  
+  // Pipe variables
+    let pipeSpawnRate = 3000; // Initial spawn rate in milliseconds
+    let pipeSpeed = 2; // Initial pipe speed
+    let pipeWidth = 60; // Initial pipe width
+  
+  
+  // Environmental variables
+    let rainIntensity = 0;
+    let windIntensity = 0;
+
+
+  // Function to generate random integer within a range
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  
+  // Function to get high score from cookie
+    function getHighScore() {
+        const cookieValue = document.cookie.split(';').find(cookie => cookie.trim().startsWith('highScore='));
+        if (cookieValue) {
+            return parseInt(cookieValue.split('=')[1]);
+        }
+        return null;
+    }
+
+    // Function to set high score as cookie
+    function setHighScore(score) {
+        document.cookie = `highScore=${score}`;
+    }
+
+  
+  // Function to generate coins
+    function generateCoins() {
+        coins.push({ x: canvas.width, y: randomInt(50, canvas.height - 50) });
+    }
+  
+  
+    // Event listener for space key to jump
+    document.addEventListener("keydown", function(event) {
+        if (event.code === "Space") {
+            if (!isGameOver) bird.velocityY = bird.jumpStrength;
+            else resetGame();
+        }
+    });
+  
+    canvas.addEventListener("click", function() {
+        if (!isGameOver) bird.velocityY = bird.jumpStrength;
+        else resetGame();
+    });  
+
+    // Function to draw the bird
+    function drawBird() {
+        ctx.beginPath();
+        ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#FF5733";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    // Function to draw pipes
+    function drawPipes() {
+        ctx.fillStyle = "#66CCFF";
+        for (let pipe of pipes) {
+            ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+            ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
+        }
+    }
+  
+    // Function to generate pipes
+    function generatePipes() {
+        pipes.push({ x: canvas.width, y: randomInt(100, canvas.height - 200), height: randomInt(50, 200), width: pipeWidth });
+    }
+
+
+    // Function to move pipes
+    function movePipes() {
+        for (let pipe of pipes) {
+            pipe.x -= pipeSpeed;
+            if (pipe.x + pipeWidth < 0) {
+                pipes.shift();
+                score++;
+            }
+        }
+    }
+
+    // Function to generate pipes
+    function generatePipes() {
+        if (pipeTimer % pipeInterval === 0) {
+            const topHeight = Math.floor(Math.random() * (canvas.height - pipeGap));
+            pipes.push({ x: canvas.width, top: topHeight });
+        }
+        pipeTimer++;
+    }
+
+    // Function to check collisions
+    function checkCollisions() {
+        // Check collision with ground
+        if (bird.y + bird.radius > canvas.height) {
+            isGameOver = true;
+        }
+        // Check collision with pipes
+        for (let pipe of pipes) {
+            if (
+                bird.x + bird.radius > pipe.x && bird.x - bird.radius < pipe.x + pipeWidth &&
+                (bird.y - bird.radius < pipe.top || bird.y + bird.radius > pipe.top + pipeGap)
+            ) {
+                isGameOver = true;
+            }
+        }
+    }
+
+  // Function to draw coins
+    function drawCoins() {
+        ctx.fillStyle = "#FFD700"; // Coin color: Gold
+        for (let coin of coins) {
+            ctx.beginPath();
+            ctx.arc(coin.x, coin.y, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+
+    // Function to move coins
+    function moveCoins() {
+        for (let coin of coins) {
+            coin.x -= 1.75; // Adjust coin speed as needed
+        }
+    }
+
+    // Function to check collisions between bird and coins
+    function checkCoinCollisions() {
+        for (let i = coins.length - 1; i >= 0; i--) {
+            if (
+                bird.x + bird.radius > coins[i].x - 10 &&
+                bird.x - bird.radius < coins[i].x + 10 &&
+                bird.y + bird.radius > coins[i].y - 10 &&
+                bird.y - bird.radius < coins[i].y + 10
+            ) {
+                coins.splice(i, 1);
+                score += 3; // Increase score by 3 for each coin collected
+            }
+        }
+    }
+  
+    // Function to draw score
+    function drawScore() {
+        ctx.font = "22px Arial";
+        ctx.fillStyle = "#000";
+        ctx.fillText("Score: " + score, 10, 30);
+    }
+    
+    function drawHighscore() {
+        ctx.font = "22px Arial";
+        ctx.fillStyle = "#000";
+        ctx.fillText("Highscore: " + highScore, 10, 60);
+    }
+  
+
+ const backgrounds = ["#87CEEB", "#90EE90", "#FFA07A"]; // Example background colors
+    let currentIndex = 0;
+    let backgroundInterval;
+
+    // Function to change the background
+    function changeBackground() {
+        canvas.style.backgroundColor = backgrounds[currentIndex];
+        currentIndex = (currentIndex + 1) % backgrounds.length;
+
+    }
+
+    // Start changing background every 5 seconds
+    function startBackgroundChange() {
+        backgroundInterval = setInterval(changeBackground, 2000);
+    }
+
+    // Stop changing background when game is lost
+    function stopBackgroundChange() {
+        clearInterval(backgroundInterval);
+    }
+    
+
+    // Call the startBackgroundChange function to start the background change loop
+    // startBackgroundChange()
+  
+     // Function to simulate rain effect
+    function simulateRain() {
+        // Clear previous rain effect
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Draw raindrops based on rain intensity
+        for (let i = 0; i < rainIntensity; i++) {
+            let x = randomInt(0, canvas.width);
+            let y = randomInt(0, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + 5);
+            ctx.strokeStyle = "blue";
+            ctx.stroke();
+        }
+    }
+
+    // Function to simulate wind effect
+    function simulateWind() {
+        // Apply wind effect to bird's x position based on wind intensity
+        bird.x += windIntensity;
+    }
+
+
+    
+  function updateEnvironment() {
+        // Update rain and wind intensities randomly
+        // rainIntensity = randomInt(0, 50); // Adjust maximum rain intensity as needed
+        // windIntensity = randomInt(-5, 5); // Adjust maximum wind intensity as needed
+        // Increase pipe speed
+        pipeSpeed += 0.0005;
+        // Increase pipe spawn rate
+        if (pipeSpawnRate > 1000) {
+            pipeSpawnRate -= 100; // Decrease spawn rate by 100 milliseconds
+        }
+        // Decrease pipe width
+        if (pipeWidth > 10) {
+            pipeWidth -= 0.0005;
+        }
+    }
+  
+    // Function to generate switches
+    function generateSwitches() {
+        switches.push({ x: canvas.width, y: randomInt(50, canvas.height - 50), isActive: false });
+    }
+  
+    // Function to draw switches
+    function drawSwitches() {
+        ctx.fillStyle = "#00FF00"; // Switch color: Green
+        for (let switchObj of switches) {
+            ctx.beginPath();
+            ctx.arc(switchObj.x, switchObj.y, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+   
+    function moveSwitches() {
+        for (let switchObj of switches) {
+            switchObj.x -= 3.75; // Adjust coin speed as needed
+        }
+    }
+    
+    // Function to check collisions between bird and switches
+    function checkSwitchCollisions() {
+        for (let i = switches.length - 1; i >= 0; i--) {
+            if (
+                bird.x + bird.radius > switches[i].x - 10 &&
+                bird.x - bird.radius < switches[i].x + 10 &&
+                bird.y + bird.radius > switches[i].y - 10 &&
+                bird.y - bird.radius < switches[i].y + 10
+            ) {
+                switches[i].isActive = !switches[i].isActive; // Toggle switch state
+                // If the switch is active, delete all pipes
+                if (switches[i].isActive) {
+                    pipes = [];
+                }
+            }
+        }
+    }
+  
+  
+      // Function to reset the game
+    function resetGame() {
+        canvas.style.transition = "none";
+        canvas.style.backgroundColor = "#ffffff";
+        bird.y = canvas.height / 2;
+        bird.velocityY = 0;
+        pipes = [];
+        coins = [];
+        score = 0;
+        isGameOver = false;
+        pipeTimer = 0;
+        pipeSpawnRate = 2000; // Initial spawn rate in milliseconds
+        pipeSpeed = 2; // Initial pipe speed
+        pipeWidth = 60;
+        canvas.style.transition = "background-color 1s ease-in-out";
+        startBackgroundChange();
+          
+    }
+    
+    
+
+    // Game loop
+    function gameLoop() {
+      
+        if (!isGameOver) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          movePipes();
+          generatePipes();
+          drawPipes();
+          drawBird();
+          drawScore();
+          bird.velocityY += bird.gravity;
+          bird.y += bird.velocityY;
+          
+          checkCollisions();
+          moveCoins();
+          drawCoins();
+          checkCoinCollisions();
+          
+          drawSwitches();
+          checkSwitchCollisions();
+          moveSwitches();
+          
+          updateEnvironment();
+          
+          drawHighscore();
+          
+          // simulateRain();
+          // simulateWind();
+          
+        } else {
+            ctx.font = "28px Arial";
+            ctx.fillStyle = "#000";
+            ctx.fillText("Game Over", canvas.width / 2 - 85, canvas.height / 2 - 18);
+            ctx.fillText("Click or Press Space to Restart", canvas.width / 2 - 195, canvas.height / 2 + 18);
+            clearInterval(backgroundInterval);
+            stopBackgroundChange();
+            if (score > highScore) {
+                highScore = score;
+                setHighScore(highScore); // Update high score cookie if current score is higher
+            }
+        }
+        requestAnimationFrame(gameLoop);
+      }
+
+    gameLoop();
+  
+  setInterval(generateCoins, 2000); // Generate a coin every 2 seconds
+  setInterval(generateSwitches, 10000); // Generate a switch every 10 seconds
+  
+  // Prevent scrolling when pressing spacebar
+    window.addEventListener("keydown", function(event) {
+        if (event.code === "Space" && event.target === document.body) {
+            event.preventDefault();
+        }
+    });
+  
+      </script>
+    
+      </div> </center>
+    
+    <div class="comments-section">
+      <p>
+        Any comments?
+        
+        Post them on the
+        <a href="https://discord.com/invite/WfDMzhg5Xd">LuckyGames official Discord server!</a>
+      </p>
+    </div>
+    
+    <footer>
+  <center>
+  <div class="footer-setup">
+    <div class="footer-bar" src="https://u.cubeupload.com/LuckyLucky7/65aNavBarV3.png">
+      <a class="footer" href="/index.html"></a>
+    </div> 
+  </div>
+  </center>
+    </footer></center></body>
+</html>
