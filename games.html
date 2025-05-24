@@ -21,65 +21,18 @@
 </div></center>
     
   
-  <style>
 
-		.box {
-			display: inline-block;
-			width: 300px;
-			height: 400px;
-			background-color: #f0f0f0;
-			margin: 30px;
-			padding: 10px;
-			box-sizing: border-box;
-      border-radius: 50px;
-      background-color: #00ff1c;
-      height: 255px;
-      width: 335px;
-      box-shadow: 1px 0px 0px 20px #0cd622;
-		}
-
-		.box h2 {
-			font-size: 20px;
-			margin: 10px 0;
-		}
-
-		.box .author {
-			display: flex;
-			align-items: center;
-			margin-bottom: 10px;
-      flex-wrap: wrap;
-      flex-direction: column-reverse;
-		}
-
-		.box .author img {
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			margin-right: 10px;
-		}
-
-		.box .author h3 {
-			font-size: 16px;
-			margin: 0;
-		}
-    
+<div style="margin:0 auto;">
+  <center><h1 style="margin-top: 35px; margin-bottom: 30px; background-color: #00e81a; font: menu; font-size: 30px;">Games</h1></center>
   
-</style>
-
-
-	<div style="max-width:900px; margin:0 auto; padding:20px;">
-  <h1 style="text-align:center; margin-bottom:30px; color:#333;">Mobile Games</h1>
-  
-  <div id="gameListCtn" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:20px;"></div>
+  <div id="gameListCtn" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:20px;"></div>
 </div>
 
 <style>
   body {
-    font-family: 'Roboto', Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
     background-color: #f8f9fa;
     text-align: left;
+    font: menu;
   }
   
   @media (max-width: 600px) {
@@ -88,37 +41,54 @@
 </style>
 
 <script>
-  // Sample game data
   let games = [
     {
-      title: "Space Adventure",
-      thumbnail: "https://placehold.co/600x400/468faf/ffffff?text=Space+Adventure",
-      creator: { username: "StarGazer", profilePic: "https://placehold.co/200x200/ff9a00/ffffff?text=SG" }
+      title: "LuckyBrawl",
+      thumbnail: "https://img.itch.zone/aW1nLzIxMTU5OTQ2LnBuZw==/347x500/P5b6GP.png",
+      titleLink: "https://77lucky7.itch.io/luckybrawl",
+      thumbnailLink: "https://77lucky7.itch.io/luckybrawl",
+      creator: { 
+        username: "77Lucky7", 
+        profilePic: "https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660",
+        usernameLink: "/developers",
+        profilePicLink: "/developers"
+      }
     },
     {
-      title: "Pixel Dungeon",
-      thumbnail: "https://placehold.co/600x400/83a95c/ffffff?text=Pixel+Dungeon",
-      creator: { username: "RetroGamer", profilePic: "https://placehold.co/200x200/8a2be2/ffffff?text=RG" }
+      title: "WKLBRL: LuckyBrawl Lore",
+      thumbnail: "https://cdn2.scratch.mit.edu/get_image/project/739987147_480x360.png",
+      titleLink: "games/wklbrl.html",
+      thumbnailLink: "games/wklbrl.html",
+      creator: { 
+        username: "77Lucky7", 
+        profilePic: "https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660",
+        usernameLink: "/developers",
+        profilePicLink: "/developers"
+      }
     },
     {
-      title: "Car Racing 3D",
-      thumbnail: "https://placehold.co/600x400/e63946/ffffff?text=Racing+3D",
-      creator: { username: "SpeedyDev", profilePic: "https://placehold.co/200x200/2a9d8f/ffffff?text=SD" }
+      title: "Charles's Ads",
+      thumbnail: "https://cdn2.scratch.mit.edu/get_image/project/690666288_480x360.png",
+      titleLink: "games/charles-ads.html",
+      thumbnailLink: "games/charles-ads.html",
+      creator: { 
+        username: "77Lucky7 (and Charles)", 
+        profilePic: "https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660",
+        usernameLink: "/developers",
+        profilePicLink: "/developers"
+      }
     },
     {
-      title: "Medieval Quest",
-      thumbnail: "https://placehold.co/600x400/bc6c25/ffffff?text=Medieval+Quest",
-      creator: { username: "KnightCoder", profilePic: "https://placehold.co/200x200/06d6a0/ffffff?text=KC" }
-    },
-    {
-      title: "Zombie Survival",
-      thumbnail: "https://placehold.co/600x400/1b4332/ffffff?text=Zombie+Survival",
-      creator: { username: "UndeadMaster", profilePic: "https://placehold.co/200x200/d00000/ffffff?text=UM" }
-    },
-    {
-      title: "Puzzle Master",
-      thumbnail: "https://placehold.co/600x400/f4a261/ffffff?text=Puzzle+Master",
-      creator: { username: "BrainTeaser", profilePic: "https://placehold.co/200x200/3d405b/ffffff?text=BT" }
+      title: "Community Collect",
+      thumbnail: "https://u.cubeupload.com/LuckyLucky7/LuckyGamesGame.png",
+      titleLink: "games/community-collect.html",
+      thumbnailLink: "games/community-collect.html",
+      creator: { 
+        username: "77Lucky7", 
+        profilePic: "https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660",
+        usernameLink: "/developers",
+        profilePicLink: "/developers"
+      }
     }
   ];
 
@@ -128,15 +98,37 @@
     
     games.forEach(game => {
       html += `
-        <div style="background-color:white; border-radius:15px; border:2px solid #4CAF50; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.3s ease;" 
+        <div style="background-color:#00ff1c; border-radius:35px; border:15px solid #0cd622; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.3s ease;" 
              onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-          <img src="${game.thumbnail}" alt="${game.title}" style="width:100%; height:160px; object-fit:cover;">
-          <div style="padding:15px;">
-            <h3 style="font-size:18px; font-weight:bold; margin:0 0 10px 0; color:#333;">${game.title}</h3>
+          ${game.thumbnailLink ? 
+            `<a href="${game.thumbnailLink}">
+              <img src="${game.thumbnail}" alt="${game.title}" style="margin-top: 5px; width:240px; height:175px; position:relative; left:50%; transform:translateX(-50%); box-shadow: 0px 0px 0 3px black;">
+             </a>` : 
+            `<img src="${game.thumbnail}" alt="${game.title}" style="width:240px; height:175px;">`
+          }
+          <div style="padding:15px;"><center>
+            ${game.titleLink ? 
+              `<a href="${game.titleLink}" style="text-decoration:none;">
+                <h3 style="font-size:16px; font-weight:bold; margin:0 0 10px 0; color:#333;">${game.title}</h3>
+               </a>` : 
+              `<h3 style="font-size:16px; font-weight:bold; margin:0 0 10px 0; color:#333;">${game.title}</h3>`
+            }
+            </center>
             <div style="display:flex; align-items:center;">
-              <img src="${game.creator.profilePic}" alt="${game.creator.username}" 
-                   style="width:40px; height:40px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">
-              <span style="font-size:14px; color:#666;">${game.creator.username}</span>
+              ${game.creator.profilePicLink ? 
+                `<a href="${game.creator.profilePicLink}">
+                  <img src="${game.creator.profilePic}" alt="${game.creator.username}" 
+                       style="width:40px; height:40px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">
+                 </a>` : 
+                `<img src="${game.creator.profilePic}" alt="${game.creator.username}" 
+                     style="width:40px; height:40px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">`
+              }
+              ${game.creator.usernameLink ? 
+                `<a href="${game.creator.usernameLink}" style="text-decoration:none;">
+                  <span style="font-size:14px; color:#666;">${game.creator.username}</span>
+                 </a>` : 
+                `<span style="font-size:14px; color:#666;">${game.creator.username}</span>`
+              }
             </div>
           </div>
         </div>
@@ -149,104 +141,10 @@
   // Initialize the page
   document.addEventListener('DOMContentLoaded', displayGames);
 </script>
-<body>
 
-    <center><h1 style="margin-top: 65px; background-color: #00e81a; font: menu; font-size: 30px;">Games</h1>
-    
-      <!-- LuckyBrawl --->	
-      <div class="box">
-        <a href="https://77lucky7.itch.io/luckybrawl">
-          <img style="width: 250px; height: 188px; box-shadow: 0px 0px 0 3px black;" src="https://img.itch.zone/aW1nLzIxMTU5OTQ2LnBuZw==/347x500/P5b6GP.png" />
-        </a>
-        <div>
-          <a href="developers.html">
-            <img class="author" style="float:left; width: 50px; height: 50px; margin-left: 30px; background: #00dd0c;" src="https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660">
-          </a>
-          <div style="margin-right: 25px;">
-            <a href="https://77lucky7.itch.io/luckybrawl" class="game-container-interface" style="font-size: large;">LuckyBrawl</a>
-            <div>
-              <a href="developers.html" class="game-container-interface">LuckyLucky7</a>
-            </div>
-          </div>
-        </div> 
-		  </div>
-      
-      <!-- WKLBRL --->	
-      <div class="box">
-        <a href="games/wklbrl.html" style="position: center;">
-          <img style="width: 250px; box-shadow: 0px 0px 0 3px black;" src="https://cdn2.scratch.mit.edu/get_image/project/739987147_480x360.png" />
-        </a>
-        <div>
-          <a href="developers.html">
-            <img class="author" style="float:left; width: 50px; height: 50px; margin-left: 30px; background: #00dd0c;" src="https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660">
-          </a>
-          <div style="margin-right: 25px;">
-            <a href="games/wklbrl.html" class="game-container-interface" style="font-size: large;">WKLBRL: LuckyBrawl Lore</a>
-            <div>
-              <a href="developers.html" class="game-container-interface">LuckyLucky7</a>
-            </div>
-          </div>
-        </div> 
-		  </div>
-
-      <!-- Charles's Ads --->	
-      <div class="box">
-        <a href="games/charles-ads.html" style="position: center;">
-          <img style="width: 250px; box-shadow: 0px 0px 0 3px black;" src="https://cdn2.scratch.mit.edu/get_image/project/690666288_480x360.png" />
-        </a>
-        <div>
-          <a href="developers.html">
-            <img class="author" style="float:left; width: 50px; height: 50px; margin-left: 30px; background: #00dd0c;" src="https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660">
-          </a>
-          <div style="margin-right: 25px;">
-            <a href="games/charles-ads.html" class="game-container-interface" style="font-size: large;">Charles's Ads</a>
-            <div>
-              <a href="developers.html" class="game-container-interface">LuckyLucky7</a>
-            </div>
-          </div>
-        </div> 
-		  </div>
-  
-      <!-- Community Collect --->	
-      <div class="box">
-        <a href="games/community-collect.html">
-          <img style="width: 250px; box-shadow: 0px 0px 0 3px black;" src="https://u.cubeupload.com/LuckyLucky7/LuckyGamesGame.png" />
-        </a>
-        <div>
-          <a href="developers.html">
-            <img class="author" style="float:left; width: 50px; height: 50px; margin-left: 30px; background: #00dd0c;" src="https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660">
-          </a>
-          <div style="margin-right: 25px;">
-            <a href="games/community-collect.html" class="game-container-interface" style="font-size: large;">Community Collect</a>
-            <div>
-              <a href="developers.html" class="game-container-interface">LuckyLucky7</a>
-            </div>
-          </div>
-        </div> 
-		  </div>
-
-      <!--
-      Use this for games that have been released but don't have a thumbnail: http://u.cubeupload.com/LuckyLucky7/Screenshot244.png
-      <div class="box">
-        <a href="games/coming-soon.html">
-          <img style="width: 250px; box-shadow: 0px 0px 0 3px black;" src="http://u.cubeupload.com/LuckyLucky7/ComingSoon.png" />
-        </a>
-        <div>
-          <a href="developers.html">
-            <img class="author" style="float:left; width: 50px; height: 50px; margin-left: 30px; background: #00dd0c;" src="https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660">
-          </a>
-          <div style="margin-right: 25px;">
-            <a href="games/coming-soon.html" class="game-container-interface" style="font-size: large;">Coming Soon!</a>
-            <div>
-              <a href="developers.html" class="game-container-interface">LuckyLucky7</a>
-            </div>
-          </div>
-        </div> 
-		  </div>
-      -->
       
       
-  
+  <center>
   <div style="margin-bottom: 75px;"></div>
    <div class="comments-section">
       <p>
@@ -257,14 +155,13 @@
       </p>
     </div>
   </center></body>
-    <footer>
-      <center>
-      <div class="footer-setup">
-        <div class="footer-bar" src="https://u.cubeupload.com/LuckyLucky7/65aNavBarV3.png">
-          <a class="footer" href="index.html"></a>  
-        </div> 
-      </div>
-      </center>
-    </footer>
-  </body>
+  <footer>
+    <center>
+    <div class="footer-setup">
+      <div class="footer-bar" src="https://u.cubeupload.com/LuckyLucky7/65aNavBarV3.png">
+        <a class="footer" href="index.html"></a>  
+      </div> 
+    </div>
+    </center>
+  </footer>
 </html>
