@@ -19,14 +19,72 @@
   <a class="fontchooser" href="https://discord.com/invite/WfDMzhg5Xd">Discord Server</a>
   <a class="fontchooser" href="developers.html">Developers</a>              
 </div></center>
-    <center>
-    <div style="border-radius:10px; background-color: #01dd19; height: 265px;">
-      <h1 class="welcome-text" style="height: 0px;">List of Developers</h1>
-      <p style="font-family: sans-serif; background-color: #01dd19; margin-top: 50px; font-size: 30px;">Creator</p>
-      <img class="full-logo" style="width: 75px;" src="https://u.cubeupload.com/LuckyLucky7/77Lucky7CircleFixed.png">
-      <p style="font-family: sans-serif; background-color: #01dd19; margin-top: 25px;">77Lucky7</p>
-    </div>
-    </center>
+    
+    <div style="margin:0 auto;">
+    <center><h1 style="margin-top: 35px; margin-bottom: 30px; background-color: #00e81a; font: menu; font-size: 30px;">Developers</h1></center>
+    <center><div id="developerListCtn" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(270px, 1fr)); gap:20px;"></div></center>
+</div>
+
+<style>
+  body {
+    background-color: #f8f9fa;
+    text-align: left;
+    font: menu;
+  }
+  
+  @media (max-width: 600px) {
+    #developerListCtn { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  let developers = [
+    {
+      creator: { 
+        username: "77Lucky7", 
+        profilePic: "https://cdn.glitch.global/2b2e188b-6b6d-49f0-abd1-13bfac0c673a/77Lucky7%20Circle_Fixed.png?v=1735000032660",
+      }
+    }
+  ];
+
+  // Display all developers
+  function displayDevelopers() {
+    let html = '';
+    
+    developers.forEach(dev => {
+      html += `
+        <div style="align: center; background-color:#00ff1c; border-radius:35px; border:15px solid #0cd622; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:transform 0.3s ease;" 
+             onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display:flex; align-items:center;">
+            <div style="margin-left: 5px;"></div>
+              ${dev.creator.profilePicLink ? 
+                `<a href="${dev.creator.profilePicLink}">
+                  <img src="${dev.creator.profilePic}" alt="${dev.creator.username}" 
+                       style="width:70px; height:70px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">
+                 </a>` : 
+                `<img src="${dev.creator.profilePic}" alt="${dev.creator.username}" 
+                     style="width:70px; height:70px; border-radius:50%; object-fit:cover; margin-right:10px; border:2px solid #4CAF50;">`
+              }
+              ${dev.creator.usernameLink ? 
+                `<a href="${dev.creator.usernameLink}" style="text-decoration:none;">
+                  <span style="font-size:25px; font-weight: bold;">${dev.creator.username}</span>
+                 </a>` : 
+                `<span style="font-size:25px; font-weight: bold;">${dev.creator.username}</span>`
+              }
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    developerListCtn.innerHTML = html;
+  }
+
+  // Initialize the page
+  document.addEventListener('DOMContentLoaded', displayDevelopers);
+</script>
+
+
   </body>
   <footer>
   <center>
